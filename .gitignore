@@ -1,0 +1,52 @@
+# Ignore build outputs
+bin/
+obj/
+out/
+
+# Visual Studio user-specific files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.userprefs
+
+# Build results
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Auto-generated files
+Generated Files/
+_TestResults/
+TestResults/
+*.coverage
+*.coveragexml
+
+# NuGet packages
+*.nupkg
+packages/
+*.snupkg
+
+# Rider / JetBrains IDE
+.idea/
+*.iml
+
+# Mac / Windows system files
+.DS_Store
+Thumbs.db
+
+# Other common folders
+node_modules/
+wwwroot/lib/
+
+# Optional: ignore local environment configs
+appsettings.Development.json
+.env
