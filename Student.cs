@@ -8,7 +8,7 @@ namespace Reflection
 {
     internal class Student
     {
-        public int Id { get; set; }
+        private int Id { get; set; }
         public string Name { get; set; }
 
         public void DisplayInfo()

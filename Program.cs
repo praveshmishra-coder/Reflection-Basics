@@ -7,30 +7,49 @@ namespace Reflection
     {
         static void Main()
         {
-            // Get the type of the Student class
-            Type type = typeof(Student);
+            Assembly assembly = Assembly.GetExecutingAssembly();
 
-            Console.WriteLine("Class Name: " + type.Name);
-            Console.WriteLine("\n--- Properties ---");
-            foreach (PropertyInfo prop in type.GetProperties())
-            {
-                Console.WriteLine(prop.Name);
-            }
+            Type studentType = assembly.GetType("Reflection.Student");
 
-            Console.WriteLine("\n--- Methods ---");
-            foreach (MethodInfo method in type.GetMethods())
-            {
-                Console.WriteLine(method.Name);
-            }
+            // Create instance of Student class
+            object studentObj = Activator.CreateInstance(studentType);
 
-            // Create object using reflection
-            object obj = Activator.CreateInstance(type);
-            type.GetProperty("Id")?.SetValue(obj, 1);
-            type.GetProperty("Name")?.SetValue(obj, "Pravesh");
+            // Set PRIVATE Id property
+            PropertyInfo idProp = studentType.GetProperty(
+                "Id",
+                BindingFlags.NonPublic | BindingFlags.Instance);
 
-            // Call method using reflection
-            MethodInfo displayMethod = type.GetMethod("DisplayInfo");
-            displayMethod.Invoke(obj, null);
+            idProp.SetValue(studentObj, 101);
+
+            // Set PUBLIC Name property
+            PropertyInfo nameProp = studentType.GetProperty("Name");
+            nameProp.SetValue(studentObj, "Amit");
+
+            // Call DisplayInfo method
+            MethodInfo displayMethod = studentType.GetMethod("DisplayInfo");
+            displayMethod.Invoke(studentObj, null);
+
+
+            //Assembly assembly = Assembly.GetExecutingAssembly();
+            //Type[] types = assembly.GetTypes();
+
+            //foreach (Type type in types)
+            //{
+            //    Console.WriteLine("Class Name: " + type.Name);
+            //    Console.WriteLine("\n--- Properties ---");
+            //    foreach (PropertyInfo prop in type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            //    {
+            //        Console.WriteLine(prop.Name);
+            //    }
+            //    Console.WriteLine("\n--- Methods ---");
+            //    foreach (MethodInfo method in type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            //    {
+            //        Console.WriteLine(method.Name);
+            //    }
+            //    Console.WriteLine("\n");
+            //}
+
+
         }
     }
 }
