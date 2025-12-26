@@ -29,25 +29,23 @@ namespace Reflection
             MethodInfo displayMethod = studentType.GetMethod("DisplayInfo");
             displayMethod.Invoke(studentObj, null);
 
+            Type[] types = assembly.GetTypes();
 
-            //Assembly assembly = Assembly.GetExecutingAssembly();
-            //Type[] types = assembly.GetTypes();
-
-            //foreach (Type type in types)
-            //{
-            //    Console.WriteLine("Class Name: " + type.Name);
-            //    Console.WriteLine("\n--- Properties ---");
-            //    foreach (PropertyInfo prop in type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-            //    {
-            //        Console.WriteLine(prop.Name);
-            //    }
-            //    Console.WriteLine("\n--- Methods ---");
-            //    foreach (MethodInfo method in type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-            //    {
-            //        Console.WriteLine(method.Name);
-            //    }
-            //    Console.WriteLine("\n");
-            //}
+            foreach (Type type in types)
+            {
+                Console.WriteLine("Class Name: " + type.Name);
+                Console.WriteLine("\n--- Properties ---");
+                foreach (PropertyInfo prop in type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                {
+                    Console.WriteLine(prop.Name);
+                }
+                Console.WriteLine("\n--- Methods ---");
+                foreach (MethodInfo method in type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                {
+                    Console.WriteLine(method.Name);
+                }
+                Console.WriteLine("\n");
+            }
 
 
         }
